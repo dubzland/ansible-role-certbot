@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: dubzland.certbot-rfc2136
+  role_name: certbot_rfc2136
   author: t3hpr1m3
   description: "Installs and configures Certbot (to obtain Let's Encrypt certificates)"
   issue_tracker_url: http://git.dubzland.net/dubzland/ansible-role-certbot-rfc2136/issues
