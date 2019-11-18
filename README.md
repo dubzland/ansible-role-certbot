@@ -1,5 +1,5 @@
 # Ansible Role: certbot-rfc2136
-[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/dubzland/ansible-role-certbot?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/dubzland/ansible-role-certbot/pipelines)
+[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/dubzland/ansible-role-certbot-rfc2136?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/dubzland/ansible-role-certbot-rfc2136/pipelines)
 
 Handles installing [Certbot](https://certbot.eff.org) for managing [Let's Encrypt](https://letsencrypt.org) certificates.
 

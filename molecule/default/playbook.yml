@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-role-certbot
+    - role: ansible-role-certbot-rfc2136
       vars:
         dubzland_certbot_certs:
           - name: example_com
