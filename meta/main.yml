@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: dubzland
+  description: "Installs and configures Certbot (to obtain Let's Encrypt certificates)"
+  issue_tracker_url: http://git.dubzland.net/dubzland/ansible-role-certbot-rfc2136/issues
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+
+  galaxy_tags:
+    - certbot
+    - certificates
+    - letsencrypt
+    - nginx
+    - https
+    - web
+
+dependencies: []

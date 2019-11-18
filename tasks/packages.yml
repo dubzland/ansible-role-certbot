@@ -1,0 +1,14 @@
+---
+- when: ansible_distribution == 'Debian'
+  block:
+    - name: ensure the backports repo is enabled
+      apt_repository:
+        repo: "{{ dubzland_certbot_backports_repo }}"
+        state: present
+        update_cache: True
+      when: dubzland_certbot_backports_repo is defined
+
+- name: ensure Certbot is installed
+  package:
+    name: "{{ dubzland_certbot_packages }}"
+    state: present
