@@ -4,7 +4,7 @@
 
 - name: ensure the Certbot configuration directory exists
   file:
-    path: "{{ dubzland_certbot_configuration_directory }}"
+    path: "{{ dubzland_certbot_rfc2136_configuration_directory }}"
     state: directory
     owner: root
     group: root
@@ -13,15 +13,21 @@
 - name: ensure Certbot configuration files are present for certificates
   template:
     src: etc/certbot/certificate.ini.j2
-    dest: "{{ dubzland_certbot_configuration_directory }}/{{ item.name }}.ini"
+    dest: "{{ dubzland_certbot_rfc2136_configuration_directory }}/{{ item.name }}.ini"
     owner: root
     group: root
     mode: 0600
-  with_items: "{{ dubzland_certbot_certs }}"
+  with_items: "{{ dubzland_certbot_rfc2136_certs }}"
+
+- name: dump the Certbot commands
+  debug:
+    msg: "{{ lookup('template', 'lookups/_certbot_command.j2', convert_data=False) | from_yaml }}"
+  with_items: "{{ dubzland_certbot_rfc2136_certs }}"
+  when: dubzland_certbot_rfc2136_testing is defined
 
 - name: ensure Certbot certificates exist
   command: "{{ lookup('template', 'lookups/_certbot_command.j2', convert_data=False) | from_yaml }}"
   args:
     creates: /etc/letsencrypt/live/{{ item.name }}/fullchain.pem
-  with_items: "{{ dubzland_certbot_certs }}"
-  when: dubzland_certbot_retrieve_certs
+  with_items: "{{ dubzland_certbot_rfc2136_certs }}"
+  when: dubzland_certbot_rfc2136_testing is not defined

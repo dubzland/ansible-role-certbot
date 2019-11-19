@@ -1,4 +1,4 @@
 ---
-dubzland_certbot_packages:
+dubzland_certbot_rfc2136_packages:
   - certbot
   - python3-certbot-dns-rfc2136

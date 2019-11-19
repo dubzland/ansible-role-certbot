@@ -1,10 +1,14 @@
 {% set _certbot_command = [] %}
-{% set _certbot_credential_file = "%s/%s.ini" | format(dubzland_certbot_configuration_directory, item.name) %}
+{% set _certbot_credential_file = "%s/%s.ini" | format(dubzland_certbot_rfc2136_configuration_directory, item.name) %}
 {% set _ = _certbot_command.append("certbot certonly --dns-rfc2136") %}
 {% set _ = _certbot_command.append("--dns-rfc2136-credentials") %}
 {% set _ = _certbot_command.append(_certbot_credential_file) %}
 {% set _ = _certbot_command.append("--agree-tos --noninteractive") %}
 {% set _ = _certbot_command.append("--email %s" | format(item.email)) %}
+{% set _ = _certbot_command.append("--cert-name %s" | format(item.name)) %}
+{% if dubzland_certbot_rfc2136_dry_run %}
+{%   set _ = _certbot_command.append("--dry-run") %}
+{% endif %}
 {% for domain in item.domains %}
 {%   set _ = _certbot_command.append("-d '%s'" | format(domain)) %}
 {% endfor %}

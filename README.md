@@ -11,29 +11,30 @@ Ansible version 2.0 or higher
 
 Available variables are listed below, along with their default values (see `defaults/main.yml` for more info):
 
-### dubzland_certbot_configuration_directory
+### dubzland_certbot_rfc2136_configuration_directory
 
 ```yaml
-dubzland_certbot_configuration_directory: /etc/certbot
+dubzland_certbot_rfc2136_configuration_directory: /etc/certbot
 ```
 
 Directory to contain certbot certificate configuration files.
 
-### dubzland_certbot_certs
+### dubzland_certbot_rfc2136_certs
 
 ```yaml
-dubzland_certbot_certs: []
+dubzland_certbot_rfc2136_certs: []
 ```
 
 List of certificates to configure for retrieval.
 
-### dubzland_certbot_retrieve_certs
+### dubzland_certbot_rfc2136_dry_run
 
 ```yaml
-dubzland_certbot_retrieve_certs: True
+dubzland_certbot_rfc2136_dry_run: False
 ```
 
-Whether or not to actually retrieve certificates.
+When `True`, certificates will be obtained from Let's Encrypt's staging
+environment.
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 ---
-dubzland_certbot_packages:
+dubzland_certbot_rfc2136_packages:
   - certbot
   - python3-certbot-dns-rfc2136
 
-dubzland_certbot_backports_repo: "deb http://deb.debian.org/debian stretch-backports main contrib non-free"
+dubzland_certbot_rfc2136_backports_repo: "deb http://deb.debian.org/debian stretch-backports main contrib non-free"
