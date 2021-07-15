@@ -10,9 +10,21 @@
     group: root
     mode: 0600
 
+- name: ensure the deploy-hook is configured
+  lineinfile:
+    path: /etc/letsencrypt/cli.ini
+    regexp: '^deploy-hook'
+    line: "deploy-hook = {{ dubzland_certbot_deploy_hook }}"
+    owner: root
+    group: root
+    mode: 0644
+    state: present
+  when: dubzland_certbot_deploy_hook is defined
+
 - name: ensure Certbot configuration files are present for certificates
   template:
     src: etc/certbot/certificate.ini.j2
+    # yamllint disable-line rule:line-length
     dest: "{{ dubzland_certbot_rfc2136_configuration_directory }}/{{ item.name }}.ini"
     owner: root
     group: root
@@ -21,11 +33,13 @@
 
 - name: dump the Certbot commands
   debug:
+    # yamllint disable-line rule:line-length
     msg: "{{ lookup('template', 'lookups/_certbot_command.j2', convert_data=False) | from_yaml }}"
   with_items: "{{ dubzland_certbot_rfc2136_certs }}"
   when: dubzland_certbot_rfc2136_testing is defined
 
 - name: ensure Certbot certificates exist
+  # yamllint disable-line rule:line-length
   command: "{{ lookup('template', 'lookups/_certbot_command.j2', convert_data=False) | from_yaml }}"
   args:
     creates: /etc/letsencrypt/live/{{ item.name }}/fullchain.pem
