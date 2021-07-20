@@ -36,6 +36,15 @@ dubzland_certbot_rfc2136_dry_run: False
 When `True`, certificates will be obtained from Let's Encrypt's staging
 environment.
 
+### dubzland_certbot_rfc2136_deploy_hook
+
+```yaml
+dubzland_certbot_rfc2136_deploy_hook:
+```
+
+When supplied, should be a command to run after a certificate is successfully
+renewed. ex: `dubzland_certbot_rfc_2136_deploy_hook: systemctl reload nginx`.
+
 ## Dependencies
 
 None

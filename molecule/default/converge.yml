@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-role-certbot-rfc2136"
+      include_role:
+        name: "ansible-role-certbot-rfc2136"
+      vars:
+        dubzland_certbot_rfc2136_certs:
+          - name: example_com
+            email: joeschmoe@example.com
+            dns_server: 10.0.1.1
+            dns_port: 53
+            domains:
+              - '*.example.com'
+              - 'example.com'
+            rfc2136_key:
+              name: example_com_wildcard.
+              algorithm: HMAC-SHA256
+              # yamllint disable-line rule:line-length
+              secret: "27336a3302df310d7abd2ed04e9713aef236f610d2a2327b\
+0e0b668c788ba2f397d2431b8b745560b5a4a80aa9df5291\
+9b0cf1852cbcb73e1e69aa7d41319caf"
+        dubzland_certbot_rfc2136_dry_run: true
+        dubzland_certbot_rfc2136_testing: true
+        dubzland_certbot_rfc2136_deploy_hook: systemctl reload nginx
