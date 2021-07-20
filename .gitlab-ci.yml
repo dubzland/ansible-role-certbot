@@ -1,11 +1,43 @@
 ---
-image: jdubz/ci-docker-ansible:latest
+image:
+  name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/jdubz/molecule-testing:1.0.0
 
 services:
-  - docker:19.03.1-dind
+  - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:20.10-dind
+    alias: docker
 
-molecule:
+.molecule:
   stage: test
+  cache:
+    key:
+      files:
+        - .tool-versions
+    paths:
+      - .tox
+      - /root/.cache
   script:
-    - ansible --version
-    - molecule test
+    - tox
+
+debian9:
+  extends: .molecule
+  variables:
+    MOLECULE_PLATFORM: debian-stretch
+    MOLECULE_IMAGE: debian:stretch-slim
+
+debian10:
+  extends: .molecule
+  variables:
+    MOLECULE_PLATFORM: debian-buster
+    MOLECULE_IMAGE: debian:buster-slim
+
+ubuntu1804:
+  extends: .molecule
+  variables:
+    MOLECULE_PLATFORM: ubuntu-bionic
+    MOLECULE_IMAGE: ubuntu:bionic
+
+ubuntu2004:
+  extends: .molecule
+  variables:
+    MOLECULE_PLATFORM: ubuntu-focal
+    MOLECULE_IMAGE: ubuntu:focal
