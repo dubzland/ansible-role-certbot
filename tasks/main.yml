@@ -14,12 +14,12 @@
   lineinfile:
     path: /etc/letsencrypt/cli.ini
     regexp: '^deploy-hook'
-    line: "deploy-hook = {{ dubzland_certbot_deploy_hook }}"
+    line: "deploy-hook = {{ dubzland_certbot_rfc2136_deploy_hook }}"
     owner: root
     group: root
     mode: 0644
     state: present
-  when: dubzland_certbot_deploy_hook is defined
+  when: dubzland_certbot_rfc2136_deploy_hook is defined
 
 - name: ensure Certbot configuration files are present for certificates
   template:
